@@ -6,6 +6,7 @@
 ├── 📄 README.md                          # Main portfolio overview
 ├── 📄 SETUP_GUIDE.md                     # Step-by-step deployment guide
 ├── 📄 BEST_PRACTICES.md                  # Learnings & design patterns
+├── 📄 TEST_STRATEGY.md                   # QA test cases & automation framework
 ├── 📄 .gitignore                         # Git ignore patterns
 │
 ├── 📁 docs/                              # Technical documentation
@@ -121,5 +122,3 @@ This repository serves as a **comprehensive reference implementation** of modern
 
 ---
 
-
-Built with ❤️ by a Senior Data Engineer specializing in Medallion Architectures on Microsoft Fabric
