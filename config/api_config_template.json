@@ -1,0 +1,60 @@
+{
+  "api_connection": {
+    "base_url": "https://api.your-hcm-system.example.com",
+    "oauth_token_url": "https://auth.your-hcm-system.example.com/connect/token",
+    "namespace": "api/v1",
+    "timeout_seconds": 60,
+    "rate_limit": {
+      "max_calls_per_hour": 48,
+      "retry_after_seconds": 3600
+    }
+  },
+  "oauth2_config": {
+    "grant_type": "password",
+    "client_id": "your_client_id",
+    "keyvault_url": "https://your-keyvault.vault.azure.net",
+    "secrets": {
+      "username": "hcm-api-username",
+      "password": "hcm-api-password"
+    }
+  },
+  "pagination": {
+    "default_page_size": 500,
+    "max_pages_per_request": 1000
+  },
+  "lakehouse_config": {
+    "bronze": {
+      "lakehouse": "lh_bronze",
+      "schema": "sens",
+      "table": "hcm_api_extracts",
+      "retention_days": 90
+    },
+    "silver": {
+      "lakehouse": "lh_silver",
+      "schema": "sens",
+      "retention_days": 365
+    },
+    "gold": {
+      "lakehouse": "lh_gold",
+      "schema": "dbo",
+      "retention_years": 7
+    },
+    "control": {
+      "lakehouse": "lh_control",
+      "schema": "ctrl"
+    }
+  },
+  "processing_config": {
+    "current_pay_period": 26,
+    "pay_periods_per_year": 26,
+    "enable_column_evolution": true,
+    "enable_data_quality_checks": true,
+    "enable_auto_optimize": true
+  },
+  "optimization_config": {
+    "target_file_size_mb": 128,
+    "auto_compact_enabled": true,
+    "vacuum_retention_hours": 168,
+    "zorder_enabled": true
+  }
+}

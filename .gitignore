@@ -1,0 +1,109 @@
+# Sensitive data patterns (DO NOT commit to public repos)
+**/secrets/
+**/*.env
+**/.env*
+**/credentials.json
+**/api_keys.txt
+
+# Azure Key Vault local cache
+.azure/
+.vscode/settings.json
+
+# Microsoft Fabric local cache
+.fabric/
+.synapse/
+.notebooks/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+venv/
+ENV/
+env/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# PySpark / Spark
+spark-warehouse/
+metastore_db/
+derby.log
+*.parquet
+*.delta
+_delta_log/
+_spark_metadata/
+
+# Delta Lake local checkpoints
+_checkpoints/
+
+# Data files (exclude large datasets from version control)
+*.csv
+*.json
+*.txt
+*.parquet
+*.delta
+data/
+datasets/
+
+# EXCEPT: Configuration templates (keep these)
+!config/**/*.json
+!config/**/*.txt
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# OS specific
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*~
+
+# Test outputs
+test-output/
+coverage/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Documentation build artifacts
+docs/_build/
+site/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup

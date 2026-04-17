@@ -1,0 +1,206 @@
+[
+  {
+    "table_name": "fact_payroll_earnings",
+    "table_type": "FACT",
+    "description": "Employee earnings by pay period",
+    "grain": "One row per employee-period-earning_code",
+    "silver_source": {
+      "lakehouse": "lh_silver",
+      "schema": "sens",
+      "table": "fact_earnings"
+    },
+    "gold_target": {
+      "lakehouse": "lh_gold",
+      "schema": "dbo",
+      "table": "fact_payroll_earnings"
+    },
+    "watermark": {
+      "column": "pay_period_id",
+      "type": "int"
+    },
+    "dimension_lookups": [
+      {
+        "dimension_table": "dwh_dim_employee",
+        "business_key_column": "employee_number",
+        "surrogate_key_column": "EMPLOYEE_KEY",
+        "join_type": "left"
+      },
+      {
+        "dimension_table": "dwh_dim_location",
+        "business_key_column": "location_code",
+        "surrogate_key_column": "LOCATION_KEY",
+        "join_type": "left"
+      }
+    ],
+    "fact_columns": [
+      {
+        "source": "pay_period_id",
+        "target": "PAY_PERIOD_ID",
+        "type": "INT",
+        "is_degenerate_dim": true
+      },
+      {
+        "source": "earning_code",
+        "target": "EARNING_CODE",
+        "type": "STRING",
+        "is_degenerate_dim": true
+      },
+      {
+        "source": "earning_amount",
+        "target": "EARNING_AMOUNT",
+        "type": "DECIMAL(10,2)",
+        "is_measure": true
+      },
+      {
+        "source": "hours",
+        "target": "HOURS",
+        "type": "DECIMAL(5,2)",
+        "is_measure": true
+      },
+      {
+        "source": "rate",
+        "target": "RATE",
+        "type": "DECIMAL(10,2)",
+        "is_measure": true
+      }
+    ],
+    "zorder_columns": [
+      "EMPLOYEE_KEY",
+      "PAY_PERIOD_ID"
+    ],
+    "partitioning": {
+      "enabled": false,
+      "columns": []
+    },
+    "load_strategy": "INCREMENTAL_APPEND",
+    "is_active": true
+  },
+  {
+    "table_name": "fact_payroll_deductions",
+    "table_type": "FACT",
+    "description": "Employee deductions by pay period",
+    "grain": "One row per employee-period-deduction_code",
+    "silver_source": {
+      "lakehouse": "lh_silver",
+      "schema": "sens",
+      "table": "fact_deductions"
+    },
+    "gold_target": {
+      "lakehouse": "lh_gold",
+      "schema": "dbo",
+      "table": "fact_payroll_deductions"
+    },
+    "watermark": {
+      "column": "pay_period_id",
+      "type": "int"
+    },
+    "dimension_lookups": [
+      {
+        "dimension_table": "dwh_dim_employee",
+        "business_key_column": "employee_number",
+        "surrogate_key_column": "EMPLOYEE_KEY",
+        "join_type": "left"
+      },
+      {
+        "dimension_table": "dwh_dim_location",
+        "business_key_column": "location_code",
+        "surrogate_key_column": "LOCATION_KEY",
+        "join_type": "left"
+      }
+    ],
+    "fact_columns": [
+      {
+        "source": "pay_period_id",
+        "target": "PAY_PERIOD_ID",
+        "type": "INT",
+        "is_degenerate_dim": true
+      },
+      {
+        "source": "deduction_code",
+        "target": "DEDUCTION_CODE",
+        "type": "STRING",
+        "is_degenerate_dim": true
+      },
+      {
+        "source": "deduction_amount",
+        "target": "DEDUCTION_AMOUNT",
+        "type": "DECIMAL(10,2)",
+        "is_measure": true
+      }
+    ],
+    "zorder_columns": [
+      "EMPLOYEE_KEY",
+      "PAY_PERIOD_ID"
+    ],
+    "partitioning": {
+      "enabled": false,
+      "columns": []
+    },
+    "load_strategy": "INCREMENTAL_APPEND",
+    "is_active": true
+  },
+  {
+    "table_name": "fact_payroll_taxes",
+    "table_type": "FACT",
+    "description": "Tax withholdings by pay period",
+    "grain": "One row per employee-period-tax_code",
+    "silver_source": {
+      "lakehouse": "lh_silver",
+      "schema": "sens",
+      "table": "fact_taxes"
+    },
+    "gold_target": {
+      "lakehouse": "lh_gold",
+      "schema": "dbo",
+      "table": "fact_payroll_taxes"
+    },
+    "watermark": {
+      "column": "pay_period_id",
+      "type": "int"
+    },
+    "dimension_lookups": [
+      {
+        "dimension_table": "dwh_dim_employee",
+        "business_key_column": "employee_number",
+        "surrogate_key_column": "EMPLOYEE_KEY",
+        "join_type": "left"
+      },
+      {
+        "dimension_table": "dwh_dim_location",
+        "business_key_column": "location_code",
+        "surrogate_key_column": "LOCATION_KEY",
+        "join_type": "left"
+      }
+    ],
+    "fact_columns": [
+      {
+        "source": "pay_period_id",
+        "target": "PAY_PERIOD_ID",
+        "type": "INT",
+        "is_degenerate_dim": true
+      },
+      {
+        "source": "tax_code",
+        "target": "TAX_CODE",
+        "type": "STRING",
+        "is_degenerate_dim": true
+      },
+      {
+        "source": "tax_amount",
+        "target": "TAX_AMOUNT",
+        "type": "DECIMAL(10,2)",
+        "is_measure": true
+      }
+    ],
+    "zorder_columns": [
+      "EMPLOYEE_KEY",
+      "PAY_PERIOD_ID"
+    ],
+    "partitioning": {
+      "enabled": false,
+      "columns": []
+    },
+    "load_strategy": "INCREMENTAL_APPEND",
+    "is_active": true
+  }
+]

@@ -1,0 +1,71 @@
+[
+  {
+    "table_name": "dwh_dim_employee",
+    "table_type": "DIMENSION",
+    "description": "Employee dimension with SCD Type 1",
+    "silver_source": {
+      "lakehouse": "lh_silver",
+      "schema": "sens",
+      "table": "dim_employee"
+    },
+    "gold_target": {
+      "lakehouse": "lh_gold",
+      "schema": "dbo",
+      "table": "dwh_dim_employee"
+    },
+    "keys": {
+      "business_key": "EMPLOYEE_NUMBER",
+      "surrogate_key": "EMPLOYEE_KEY",
+      "surrogate_start_value": 1
+    },
+    "update_columns": [
+      "FIRST_NAME",
+      "LAST_NAME",
+      "HIRE_DATE",
+      "TERMINATION_DATE",
+      "EMPLOYMENT_STATUS",
+      "DEPARTMENT",
+      "JOB_TITLE",
+      "LOCATION_CODE"
+    ],
+    "zorder_columns": [
+      "EMPLOYEE_NUMBER",
+      "DEPARTMENT"
+    ],
+    "load_strategy": "MERGE",
+    "is_active": true
+  },
+  {
+    "table_name": "dwh_dim_location",
+    "table_type": "DIMENSION",
+    "description": "Location/Company dimension",
+    "silver_source": {
+      "lakehouse": "lh_silver",
+      "schema": "sens",
+      "table": "dim_location"
+    },
+    "gold_target": {
+      "lakehouse": "lh_gold",
+      "schema": "dbo",
+      "table": "dwh_dim_location"
+    },
+    "keys": {
+      "business_key": "LOCATION_CODE",
+      "surrogate_key": "LOCATION_KEY",
+      "surrogate_start_value": 1
+    },
+    "update_columns": [
+      "LOCATION_NAME",
+      "CITY",
+      "STATE",
+      "COUNTRY",
+      "REGION"
+    ],
+    "zorder_columns": [
+      "LOCATION_CODE",
+      "COUNTRY"
+    ],
+    "load_strategy": "MERGE",
+    "is_active": true
+  }
+]
