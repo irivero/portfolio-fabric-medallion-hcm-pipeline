@@ -403,7 +403,7 @@ graph LR
 
 **Command**: `OPTIMIZE gold.fact_payroll_earnings ZORDER BY (EMPLOYEE_KEY, PAY_PERIOD_ID)`
 
-**Result**: 4x query performance improvement on filtered queries
+**Result**: 2.5x query performance improvement on filtered queries
 
 ---
 

@@ -106,8 +106,8 @@ Start here: [Setup Guide](SETUP_GUIDE.md) → Layer docs ([Bronze](docs/02_BRONZ
 
 - **Processing Speed**: 59 min E2E (within 70 min SLA)
 - **Data Volume**: ~1.3M records across 5 entities
-- **Performance**: 4x query improvement with Z-ORDER
-- **Storage Efficiency**: 25% reduction via OPTIMIZE + VACUUM
+- **Performance**: 2.5x query improvement with Z-ORDER
+- **Storage Efficiency**: 18% reduction via OPTIMIZE + VACUUM
 - **Code Reusability**: 100% metadata-driven (add entities without code changes)
 
 ## Contact & Questions

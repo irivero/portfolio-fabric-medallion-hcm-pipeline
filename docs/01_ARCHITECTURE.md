@@ -766,7 +766,7 @@ fact_df.join(broadcast(dim_df), on='business_key')
 -- Query without Z-ORDER: ~12 seconds
 SELECT * FROM gold.fact_payroll_earnings WHERE EMPLOYEE_KEY = 195;
 
--- Query with Z-ORDER: ~3 seconds (4x improvement)
+-- Query with Z-ORDER: ~5 seconds (2.5x improvement)
 OPTIMIZE gold.fact_payroll_earnings ZORDER BY (EMPLOYEE_KEY, PAY_PERIOD_ID);
 SELECT * FROM gold.fact_payroll_earnings WHERE EMPLOYEE_KEY = 195;
 ```

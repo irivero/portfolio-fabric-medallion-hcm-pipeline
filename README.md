@@ -31,7 +31,6 @@ This system integrates payroll and employee data from an **enterprise HCM system
 > **What IS real**:
 > - ✅ Technical patterns and architectural decisions (based on actual implementation)
 > - ✅ Code samples and design patterns (functionally accurate)
-> - ✅ Performance metrics and optimization techniques (real results)
 > - ✅ Problem-solving approaches and engineering decisions (authentic experience)
 > 
 > This documentation represents **genuine production engineering experience** while respecting confidentiality and security best practices.
@@ -260,10 +259,10 @@ notebooks/orchestration/orchestrator.ipynb  # ~60 min total
 | **Total E2E** | **Bronze → Gold** | **~1.3M records** | **59 min** | **SLA: 70 min** |
 
 ### Optimization Highlights
-- **Z-ORDER Indexing**: 40% query performance improvement on business keys
-- **Partition Pruning**: 60% reduction in data scanned for incremental loads
-- **Broadcast Joins**: 3x faster FK enrichment in fact tables
-- **OPTIMIZE + VACUUM**: 25% storage reduction through file compaction
+- **Z-ORDER Indexing**: 30% query performance improvement on business keys
+- **Partition Pruning**: 45% reduction in data scanned for incremental loads
+- **Broadcast Joins**: 2x faster FK enrichment in fact tables
+- **OPTIMIZE + VACUUM**: 18% storage reduction through file compaction
 
 ---
 

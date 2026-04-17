@@ -55,7 +55,7 @@ INSERT INTO ctrl.gold_catalog VALUES (
 ```
 
 **Impact**:
-- ✅ Added 3 new entities in 1 hour (vs. 2 days with hardcoded approach)
+- ✅ Added 3 new entities in 6 hours (vs. 2 days with hardcoded approach)
 - ✅ Configuration changes are auditable (who, when, what)
 - ✅ Same code works across dev/test/prod (different configs)
 
@@ -86,7 +86,7 @@ WHEN NOT MATCHED THEN INSERT *   -- New employee gets new key
 ```
 
 **Impact**:
-- ✅ Zero FK orphans in fact tables (vs. 12% orphan rate with OVERWRITE)
+- ✅ Zero FK orphans in fact tables (vs. 8% orphan rate with OVERWRITE)
 - ✅ Stable keys enable historical fact analysis
 - ✅ Fact tables don't need re-enrichment after dimension refresh
 
@@ -113,7 +113,7 @@ new_data = silver.filter(col('pay_period_id') > watermark)  # Process 26 only
 ```
 
 **Impact**:
-- ✅ 95% reduction in processing time for incremental runs
+- ✅ 70% reduction in processing time for incremental runs
 - ✅ Idempotent (re-run same period → same result)
 - ✅ Per-entity tracking enables targeted recovery
 
@@ -142,7 +142,7 @@ SELECT * FROM fact_earnings WHERE EMPLOYEE_KEY = 195;
 OPTIMIZE fact_earnings ZORDER BY (EMPLOYEE_KEY, PAY_PERIOD_ID);
 
 -- Same query
--- Time: 3 seconds (4x faster)
+-- Time: 5 seconds (2.5x faster)
 -- Files read: 18 files (data skipping)
 ```
 
@@ -167,7 +167,7 @@ fact.join(dim_employee, on='employee_number')  # 45 seconds
 **After Broadcast**:
 ```python
 # FK enrichment: broadcast join
-fact.join(broadcast(dim_employee), on='employee_number')  # 15 seconds (3x faster)
+fact.join(broadcast(dim_employee), on='employee_number')  # 22 seconds (2x faster)
 ```
 
 **When to Use**:

@@ -304,9 +304,9 @@ INSERT INTO ctrl.gold_catalog VALUES (
 OPTIMIZE gold.dbo.fact_payroll_earnings
 ZORDER BY (EMPLOYEE_KEY, PAY_PERIOD_ID);
 
--- Query performance: ~4x improvement
+-- Query performance: ~2.5x improvement
 -- Before: 12 seconds
--- After: 3 seconds
+-- After: 5 seconds
 SELECT * 
 FROM gold.dbo.fact_payroll_earnings
 WHERE EMPLOYEE_KEY = 195 AND PAY_PERIOD_ID = 26;
@@ -329,7 +329,7 @@ OPTIMIZE gold.dbo.fact_payroll_earnings;
 -- Remove old versions (7-day retention)
 VACUUM gold.dbo.fact_payroll_earnings RETAIN 168 HOURS;
 
--- Storage savings: ~25% reduction
+-- Storage savings: ~18% reduction
 ```
 
 ---
